@@ -6,8 +6,8 @@ const socket = require('socket.io');
 const server = http.createServer(app);
 const io = socket(server);
 const PORT = process.env.PORT || 4000;
-const users = []
-let counter = 0;
+let users = []
+let counter =0;
 
 
 app.use(express.static(path.join(__dirname, 'public')))//express
@@ -24,22 +24,27 @@ io.on('connection', socket => {
     user= {id: id,
     name: data.name}
     users.push(user)
+    // counter= users.length;
     console.log(users);
     data.users = users
     io.emit('user', data)
+    io.emit('counter', users.length)
+    
   })
-  counter++
-  io.emit('counter', counter)
+  
+  
+  console.log(counter);
   
   //Funkar nästan(?) behöver skciak med uppdaterad array i datan så chat.js kan populera users- löst: emittar objekt med logoff
-  socket.on('disconnect', data => {
-    counter--
+  socket.on('disconnect', data => { //vet inte vad data här är förnåt
+    // counter--
     console.log(socket.id + " Disconnected");
     users.forEach(user => {
       if(user.id === socket.id){
         
         users.splice(users.indexOf(user), 1)
-        socket.broadcast.emit('logoff', {id: socket.id, name: user.name, users:users})
+        socket.broadcast.emit('logoff', {id: socket.id, name: user.name, users:users, counter: users.length})
+        
       }
     
     });

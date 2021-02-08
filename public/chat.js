@@ -9,6 +9,8 @@ const btn = document.querySelector('#send')
 const form = document.querySelector('#form')
 const feedback = document.querySelector('#feedback')
 const users = document.getElementById('users')
+channel = document.querySelector('.channel')
+let counter = 0;
 
 
 
@@ -51,7 +53,24 @@ socket.on('message', data => {
 </div>`
 chat.scrollTop = chat.scrollHeight;
 })
+socket.on('counter', data => {
+  console.log(data);
+  counter = data;
+  channel.innerHTML = `
+  
+  <p class="lobby">Lobby</p>
+  <p id="counter">(${counter})</p>
+</div>
+`
+//   data.users.forEach(user => {
+//     users.innerHTML += `
+//     <div class="user" id=${user.id}>
+//     <p>${user.name}</p>
+//     </div>
+//     `
 
+// })
+})
 socket.on('user', data => {
   // console.log(data);
   if(data.id === socket.id){
@@ -62,14 +81,16 @@ socket.on('user', data => {
     output.innerHTML += `<p>${data.name} has joined the chat..</p>`
   }
   //Populerar "Channel" med users från array i App.js
-  users.innerHTML = `
-  <div class="channel d-flex">
-  <p class="lobby">Lobby</p>
-  <p id="counter">(3)</p>
-</div>
+//   channel.innerHTML = `
+//  <p class="lobby">Lobby</p>
+//   <p id="counter">(${counter})</p>
+// </div>
 
-  `
+//   `
+  //Populerar users -
+  users.innerHTML = ''
   data.users.forEach(user => {
+    
     users.innerHTML += `
     <div class="user" id=${user.id}>
     <p>${user.name}</p>
@@ -87,14 +108,15 @@ socket.on('logoff', data => {
   output.innerHTML += `<p>${data.name} has left the chat</p>`
   
   //samma som "login"
-  users.innerHTML = `
+  channel.innerHTML = `
   <div class="channel d-flex">
   <p class="lobby">Lobby</p>
-  <p id="counter">(3)</p>
+  <p id="counter">(${counter})</p>
 </div>
 
   `
   data.users.forEach(user => {
+    users.innerHTML = ''
     users.innerHTML += `
     <div class="user" id=${user.id}>
     <p>${user.name}</p>
@@ -104,9 +126,7 @@ socket.on('logoff', data => {
 
 })
 
-socket.on('counter', data => {
-  console.log(data);
-})
+
 
 
 
