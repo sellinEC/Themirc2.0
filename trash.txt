@@ -1,0 +1,18 @@
+form.addEventListener('submit', (e)=> {
+  switch (userName.value.trim()) {
+    case '':e.preventDefault()
+    validate.innerText = 'Enter your name please'
+    userName.focus();
+      
+      break;
+  
+    default:
+    console.log(userName.value); 
+    setTimeout(() => {
+    window.location = `./chat.html?${userName.value}`
+    }, 1000);
+
+      break;
+  }
+
+})
