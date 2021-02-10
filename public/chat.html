@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 
-<he>
+<head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,59 +10,56 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
-  <title>Mirc2.0</title>
+  <title>mIRC2.0</title>
+  <link rel="shortcut icon" type="image/x-icon" href="./images/mirc_logo.png" />
+</head>
+
+<body>
+  <title>Chat</title>
   </head>
 
   <body>
-    <title>Chat</title>
-    </head>
+    <nav>
+      <div class="navbar"></div>
+      <!-- <h1>CHAT</h1> -->
+    </nav>
+    <div class="container">
 
-    <body>
-      <nav>
-        <div class="navbar"></div>
-        <!-- <h1>CHAT</h1> -->
-      </nav>
-      <div class="container">
-
-        <div class="sidebar container">
-          <div class="channel d-flex">
-            <p class="lobby">Lobby</p>
-            <p id="counter">(3)</p>
-          </div>
-          <div id="users" class="users">
-
-          </div>
+      <div class="sidebar container">
+        <div class="channel d-flex">
+          <p class="lobby">Lobby</p>
+          <p id="counter">(3)</p>
         </div>
+        <div id="users" class="users">
 
-
-        <div id="chat">
-
-          <div id="chat-window">
-            <div id="output">
-              <div class="chat-box">
-                <p class="chat-name">Namnet på anvädaren</p>
-                <p class="chat-msg">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur, omnis?</p>
-              </div>
-            </div>
-            <div id="feedback"></div>
-          </div>
-          <form id="form">
-            <div id="name"></div>
-            <input type="text" id="message" placeholder="Message" autocomplete="off">
-            <button id="send">send</button>
-          </form>
         </div>
       </div>
 
 
-      <script src="/socket.io/socket.io.js"></script>
-      <!-- Option 1: Bootstrap Bundle with Popper -->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
-      <script src="chat.js"></script>
+      <div id="chat">
+
+        <div id="chat-window">
+          <div id="output">
+          </div>
+          <div id="feedback"></div>
+        </div>
+        <form id="form">
+          <div id="name"></div>
+          <input type="text" id="message" placeholder="Message" autocomplete="off">
+          <button id="send">send</button>
+        </form>
+      </div>
+    </div>
 
 
-    </body>
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"></script>
+    <script src="chat.js"></script>
+
+
+  </body>
 
 </html>
